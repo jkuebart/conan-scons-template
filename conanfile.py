@@ -1,11 +1,11 @@
 from conans import ConanFile, tools
 import os
 
+
 class HelloConan(ConanFile):
     name = 'Hello'
     version = '1.0'
     license = 'MIT'
-    url = ''
     settings = 'os', 'compiler', 'build_type', 'arch'
     description = 'myproj description'
     exports_sources = "src/*"
