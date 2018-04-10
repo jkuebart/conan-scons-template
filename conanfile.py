@@ -16,7 +16,7 @@ class HelloConan(ConanFile):
         os.makedirs("build")
         # FIXME: Compiler, version, arch are hardcoded, not parametrized
         with tools.chdir("build"):
-            self.run('scons -C {}/src {}'.format(self.source_folder, debug_opt))
+            self.run('scons -C "{}/src" {}'.format(self.source_folder, debug_opt))
         
     def package(self):
         self.copy("*.h", "include", src="src")
