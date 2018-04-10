@@ -8,7 +8,7 @@ class HelloTestConan(ConanFile):
 
     def build(self):
         debug_opt = '--debug-build' if self.settings.build_type == 'Debug' else ''
-        self.run('scons -C {} {}'.format(self.source_folder, debug_opt))
+        self.run('scons -C "{}" {}'.format(self.source_folder, debug_opt))
 
     def test(self):
         self.run(os.path.join('.', 'example'))
