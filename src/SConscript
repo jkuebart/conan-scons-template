@@ -60,6 +60,5 @@ if not conan:
     sys.exit(1)
 
 flags = conan["conan"]
-version = flags.pop("VERSION")
 env.MergeFlags(flags)
 env.Library("hello", "hello.cpp")
