@@ -5,8 +5,8 @@ import sys
 # with the command `conan test_package`. It won't work if
 # someone just tries to run `scons` in this directory.
 if GetLaunchDir() == os.getcwd():
-    print 'This SCons project is not designed to be run directly.'
-    print 'It is invoked by Conan during a `conan test_package`'
+    print ('This SCons project is not designed to be run directly.')
+    print ('It is invoked by Conan during a `conan test_package`')
     sys.exit(1)
 
 # `variant_dir` specifies the build directory. It is set to
