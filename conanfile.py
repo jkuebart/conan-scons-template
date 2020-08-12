@@ -8,20 +8,27 @@ class HelloConan(ConanFile):
     license = 'MIT'
     settings = 'os', 'compiler', 'build_type', 'arch'
     description = 'myproj description'
-    exports_sources = "src/*"
+    exports_sources = "SConstruct", "src/*"
     generators = "scons"
 
+    def scons(self, arguments=None):
+        arguments = arguments or []
+        debug_opt = \
+            ["--debug-build"] if self.settings.build_type == "Debug" else []
+
+        self.run([
+            "scons", "--srcdir", self.source_folder,
+            *debug_opt, *arguments
+        ])
+
     def build(self):
-        debug_opt = '--debug-build' if self.settings.build_type == 'Debug' else ''
-        os.makedirs("build")
         # FIXME: Compiler, version, arch are hardcoded, not parametrized
-        with tools.chdir("build"):
-            self.run('scons -C "{}/src" {}'.format(self.source_folder, debug_opt))
-        
+        self.scons()
+
     def package(self):
-        self.copy("*.h", "include", src="src")
-        self.copy("*.lib", "lib", keep_path=False)
-        self.copy("*.a", "lib", keep_path=False)
-        
+        self.scons([
+            "install", "--install-sandbox={}".format(self.package_folder)
+        ])
+
     def package_info(self):
         self.cpp_info.libs = ["hello"]
