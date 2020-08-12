@@ -7,8 +7,10 @@ Inside the root directory, just run
 
     conan create .
     conan create -s build_type=Debug .
+    conan create -o Hello:shared=True .
+    conan create -o Hello:shared=True -s build_type=Debug .
 
-to test the possible configurations.
+to test the four possible configurations.
 
 [1]: https://github.com/lasote/conan
 [2]: https://bitbucket.org/scons/scons

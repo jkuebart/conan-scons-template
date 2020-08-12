@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef WIN32
+#ifdef LIBHELLO_DLL
   #define HELLO_EXPORT __declspec(dllexport)
 #else
   #define HELLO_EXPORT
